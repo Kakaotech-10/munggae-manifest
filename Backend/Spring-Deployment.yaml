@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: munggae-spring-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: munggae-spring-service
+  template:
+    metadata:
+      labels:
+        app: munggae-spring-service
+    spec:
+      containers:
+        - name: munggae-spring-service
+          image: ella00/munggae-be-spring:latest
+          ports:
+            - containerPort: 8081
+      #     volumeMounts:
+      #       - name: config-volume
+      #         mountPath: /config/application.yml
+      #         subPath: application.yml
+      #     env:
+      #       - name: SPRING_CONFIG_LOCATION
+      #         value: "optional:file:/config/application.yml"
+      # volumes:
+      #   - name: config-volume
+      #     configMap:
+      #       name: munggae-spring-config
+      #       items:
+      #         - key: application.yml
+      #           path: application.yml
