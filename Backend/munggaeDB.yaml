@@ -7,22 +7,22 @@ metadata:
     app: mysql-spring
 spec:
   containers:
-  - name: mysql-spring-db
-    image: eddykim3396/ktb-10-db:latest
-    env:
-    - name: MYSQL_ROOT_PASSWORD
-      value: "123"
-    ports:
-    - containerPort: 3306
-    volumeMounts:
-    - name: mysql-client-config
-      mountPath: /etc/mysql/my.cnf
-      subPath: my.cnf
-      readOnly: true
+    - name: mysql-spring-db
+      image: eddykim3396/ktb-10-db:latest
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: '123'
+      ports:
+        - containerPort: 3306
+      volumeMounts:
+        - name: mysql-client-config
+          mountPath: /etc/mysql/my.cnf
+          subPath: my.cnf
+          readOnly: true
   volumes:
-  - name: mysql-client-config
-    configMap:
-      name: mysql-client-config
+    - name: mysql-client-config
+      configMap:
+        name: mysql-client-config
 
 ---
 apiVersion: v1
@@ -34,9 +34,9 @@ spec:
   selector:
     app: mysql-munggae
   ports:
-  - protocol: TCP
-    port: 3308
-    targetPort: 3306
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
 
 ---
 apiVersion: v1
