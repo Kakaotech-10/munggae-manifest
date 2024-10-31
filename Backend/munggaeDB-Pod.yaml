@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-spring-pod
+  namespace: db
+  labels:
+    app: mysql-spring
+spec:
+  containers:
+  - name: mysql-spring-db
+    image: eddykim3396/ktb-10-db:latest
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: "123"
+    ports:
+    - containerPort: 3306
+    volumeMounts:
+    - name: mysql-client-config
+      mountPath: /etc/mysql
+      subPath: my.cnf
+      readOnly: true
+  volumes:
+  - name: mysql-client-config
+    configMap:
+      name: mysql-client-config

@@ -17,17 +17,17 @@ spec:
           image: ella00/munggae-be-spring:latest
           ports:
             - containerPort: 8081
-      #     volumeMounts:
-      #       - name: config-volume
-      #         mountPath: /config/application.yml
-      #         subPath: application.yml
-      #     env:
-      #       - name: SPRING_CONFIG_LOCATION
-      #         value: "optional:file:/config/application.yml"
-      # volumes:
-      #   - name: config-volume
-      #     configMap:
-      #       name: munggae-spring-config
-      #       items:
-      #         - key: application.yml
-      #           path: application.yml
+          volumeMounts:
+            - name: config-volume
+              mountPath: /config/application.yml
+              subPath: application.yml
+          env:
+            - name: SPRING_CONFIG_LOCATION
+              value: "optional:file:/config/application.yml"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: munggae-spring-config
+            items:
+              - key: application.yml
+                path: application.yml
