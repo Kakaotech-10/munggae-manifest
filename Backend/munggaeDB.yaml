@@ -16,7 +16,7 @@ spec:
     - containerPort: 3306
     volumeMounts:
     - name: mysql-client-config
-      mountPath: /etc/mysql
+      mountPath: /etc/mysql/my.cnf
       subPath: my.cnf
       readOnly: true
   volumes:
