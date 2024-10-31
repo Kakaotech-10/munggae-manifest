@@ -32,7 +32,7 @@ metadata:
   namespace: munggae
 spec:
   selector:
-    app: mysql-munggae
+    app: mysql-spring
   ports:
     - protocol: TCP
       port: 3306
