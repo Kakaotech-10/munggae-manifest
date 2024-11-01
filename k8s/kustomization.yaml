@@ -1,3 +1,4 @@
 namespace: munggae-ai
 resources:
   - FastAPI-munggae.yaml
+  - FastAPI-Ingress.yaml
