@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: munggae-ai
-        image: krmp-d2hub-idock.9rum.cc/dev-test/repo_fbfa09903b24
+        image: krmp-d2hub-idock.9rum.cc/dev-test/repo_5390a8e6ca2c
         ports:
         - containerPort: 8080
 ---
