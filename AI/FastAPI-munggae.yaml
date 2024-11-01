@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: munggae-ai-deployment
+  labels:
+    app.kubernetes.io/instance: munggae-ai
+    app.kubernetes.io/name: munggae-ai
+    app: munggae-ai
+
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: munggae-ai
+  template:
+    metadata:
+      labels:
+        app: munggae-ai
+    spec:
+      containers:
+      - name: munggae-ai
+        image: krmp-d2hub-idock.9rum.cc/dev-test/repo_fbfa09903b24
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: munggae-ai-service
+spec:
+  selector:
+    app: munggae-ai
+  ports:
+    - port: 8080
+      targetPort: 8080
