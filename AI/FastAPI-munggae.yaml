@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: munggae-ai
-          image: eddykim3396/ktb-10-ai:latest
+          image: ella00/munggae-ai:9
           ports:
             - containerPort: 8000
 ---
