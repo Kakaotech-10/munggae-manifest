@@ -21,7 +21,7 @@ spec:
       - name: munggae-ai
         image: krmp-d2hub-idock.9rum.cc/dev-test/repo_fbfa09903b24
         ports:
-        - containerPort: 8000
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -32,4 +32,4 @@ spec:
     app: munggae-ai
   ports:
     - port: 8080
-      targetPort: 8000
+      targetPort: 8080
