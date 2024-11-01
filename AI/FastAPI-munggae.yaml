@@ -3,12 +3,10 @@ kind: Deployment
 metadata:
   name: munggae-ai-deployment
   labels:
-    app.kubernetes.io/instance: munggae-ai
-    app.kubernetes.io/name: munggae-ai
     app: munggae-ai
 
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: munggae-ai
@@ -21,15 +19,20 @@ spec:
       - name: munggae-ai
         image: krmp-d2hub-idock.9rum.cc/dev-test/repo_5390a8e6ca2c
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: munggae-ai-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "external"    # ALB 유형 설정
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing" # 외부 접근 허용
 spec:
+  type: ClusterIP
   selector:
     app: munggae-ai
   ports:
-    - port: 8080
-      targetPort: 8080
+    - protocol: TCP
+      port: 8000              # ALB의 포트
+      targetPort: 8000      # 컨테이너의 포트

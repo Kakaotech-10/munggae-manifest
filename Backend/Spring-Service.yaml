@@ -5,13 +5,8 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "external"    # ALB 유형 설정
     service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing" # 외부 접근 허용
-    #service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "<ACM_CERTIFICATE_ARN>" # HTTPS용 SSL 인증서 ARN (선택 사항)
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "HTTP" # 백엔드 프로토콜
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: "HTTP"
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-port: "8081"
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: "/health" # 헬스 체크 경로
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: munggae-spring-service
   ports:

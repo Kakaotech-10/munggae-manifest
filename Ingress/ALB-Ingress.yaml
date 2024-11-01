@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: munggae-ingress
+  annotations:
+    kubernetes.io/ingress.class: 'alb'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTP": 8000}]'
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=60
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: munggae-spring-service
+                port:
+                  number: 80
+          - path: /ai
+            pathType: Prefix
+            backend:
+              service:
+                name: munggae-ai-service
+                port:
+                  number: 8000
