@@ -48,6 +48,8 @@ data:
     custom:
       jwt:
         secretKey: ${JWT_SECRET_KEY}
+      s3-url: https://munggae-image.s3.ap-northeast-2.amazonaws.com
+      cloudfront-url: https://d30u08twypa29t.cloudfront.net
 
     cloud:
       aws:
