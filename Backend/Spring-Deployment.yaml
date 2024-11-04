@@ -24,6 +24,21 @@ spec:
           env:
             - name: SPRING_CONFIG_LOCATION
               value: "optional:file:/config/application.yml"
+            - name: AWS_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: munggae-spring-secrets
+                  key: aws-access-key
+            - name: AWS_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: munggae-spring-secrets
+                  key: aws-secret-key
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: munggae-spring-secrets
+                  key: jwt-secret-key
       volumes:
         - name: config-volume
           configMap:
