@@ -48,8 +48,10 @@ data:
     custom:
       jwt:
         secretKey: ${JWT_SECRET_KEY}
-      s3-url: https://munggae-image.s3.ap-northeast-2.amazonaws.com
-      cloudfront-url: https://d30u08twypa29t.cloudfront.net
+      client:
+        base-url: ${CLIENT_SECRET_URI}
+      s3-url: ${S3_URI}
+      cloudfront-url: ${CLOUDFRONT_URI}
       fast-api:
         base-url: http://munggae-ai-service:8000/api/v1/
 
