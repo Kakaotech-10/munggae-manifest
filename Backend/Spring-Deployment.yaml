@@ -43,7 +43,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: munggae-spring-secrets
-                  key: cloudfront_uri
+                  key: cloudfront-uri
             - name: JWT_SECRET_KEY
               valueFrom:
                 secretKeyRef:
