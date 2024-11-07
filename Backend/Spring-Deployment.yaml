@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: munggae-spring-service
-          image: ella00/munggae-be-spring:90
+          image: ella00/munggae-be-spring:94
           ports:
             - containerPort: 8081
           volumeMounts:
