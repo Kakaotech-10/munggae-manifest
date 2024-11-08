@@ -49,7 +49,7 @@ spec:
     spec:
       containers:
         - name: mysql-spring-db
-          image: eddykim3396/ktb-10-db:latest
+          image: mysql:8.4.2
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
