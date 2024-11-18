@@ -27,6 +27,15 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        volumeMounts:
+        - name: redis-config-volume
+          mountPath: /usr/local/etc/redis/redis.conf
+          subPath: redis.conf
+        command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+      volumes:
+      - name: redis-config-volume
+        configMap:
+          name: redis-config
 ---
 apiVersion: v1
 kind: Service
@@ -40,3 +49,14 @@ spec:
     targetPort: 6379
   selector:
     app: redis
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+  namespace: munggae
+data:
+  redis.conf: |
+    bind 0.0.0.0
+    port 6379
+    requirepass 1234
