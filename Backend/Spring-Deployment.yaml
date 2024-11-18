@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: munggae-spring-service-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: munggae-spring-service

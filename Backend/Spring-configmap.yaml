@@ -44,6 +44,12 @@ data:
       key:
         client-id: ${KAKAO_CLIENT_ID}
       redirect-uri: ${KAKAO_REDIRECT_URI}
+    
+    data:
+      redis:
+        host: redis-service.munggae
+        port: 6379
+        password: 1234
 
     custom:
       jwt:
