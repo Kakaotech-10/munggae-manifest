@@ -59,7 +59,7 @@ data:
       s3-url: ${S3_URI}
       cloudfront-url: ${CLOUDFRONT_URI}
       fast-api:
-        base-url: http://munggae-ai-service:8000/api/v1/
+        base-url: http://munggae-ai-service:8000/api/v1
 
     cloud:
       aws:
