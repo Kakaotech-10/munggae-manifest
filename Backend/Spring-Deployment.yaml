@@ -64,6 +64,8 @@ spec:
                 secretKeyRef:
                   name: munggae-spring-secrets
                   key: kakao-redirect-uri
+            - name: TZ
+              value: Asia/Seoul
       volumes:
         - name: config-volume
           configMap:
