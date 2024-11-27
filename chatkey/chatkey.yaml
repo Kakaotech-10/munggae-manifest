@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: munggae-chatkey-deployment
+  labels:
+    app: munggae-chatkey
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: munggae-chatkey
+  template:
+    metadata:
+      labels:
+        app: munggae-chatkey
+    spec:
+      containers:
+        - name: munggae-chatkey
+          image: ella00/munggae-ai:28
+          ports:
+            - containerPort: 8001
+          envFrom:
+            - secretRef:
+                name: openai-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: munggae-chatkey-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: 'external' # ALB 유형 설정
+    service.beta.kubernetes.io/aws-load-balancer-scheme: 'internet-facing' # 외부 접근 허용
+spec:
+  type: ClusterIP
+  selector:
+    app: munggae-chatkey
+  ports:
+    - protocol: TCP
+      port: 8001 # ALB의 포트
+      targetPort: 8001 # 컨테이너의 포트
