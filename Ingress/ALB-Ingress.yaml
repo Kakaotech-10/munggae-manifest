@@ -10,7 +10,7 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-healthy-threshold-count: '3'
     alb.ingress.kubernetes.io/healthcheck-unhealthy-threshold-count: '3'
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}, {"HTTP": 8000}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}, {"HTTP": 8000}, {"HTTP": 8001}]'
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=60
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:590184100354:certificate/5ed4bd7f-3df3-49c5-84bf-1707904eb58e
@@ -33,3 +33,10 @@ spec:
                 name: munggae-ai-service
                 port:
                   number: 8000
+          - path: /*
+            pathType: Prefix
+            backend:
+              service:
+                name: munggae-chatkey-service
+                port:
+                  number: 8001
