@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: munggae-chatkey
-          image: ella00/munggae-ai-repo:5
+          image: ella00/munggae-ai-repo:6
           ports:
             - containerPort: 8001
           envFrom:
