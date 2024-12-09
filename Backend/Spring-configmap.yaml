@@ -30,6 +30,9 @@ data:
           host: redis-service.munggae
           port: 6379
           password: 1234
+      elasticsearch:
+        uris: http://elasticsearch-service:9200
+        username: elastic
 
     jackson:
       serialization:
