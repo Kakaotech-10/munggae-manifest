@@ -1,0 +1,57 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: munggae-keyword-deployment
+#   labels:
+#     app: munggae-keyword
+
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: munggae-keyword
+#   template:
+#     metadata:
+#       labels:
+#         app: munggae-keyword
+#     spec:
+#       containers:
+#         - name: munggae-keyword
+#           image: eddykim3396/ktb-10-keyword
+#           ports:
+#             - containerPort: 8001
+#           envFrom:
+#             - configMapRef:
+#                 name: munggae-envs-config
+#             - secretRef:
+#                 name: openai-secret
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: munggae-keyword-service
+#   annotations:
+#     service.beta.kubernetes.io/aws-load-balancer-type: 'external' # ALB 유형 설정
+#     service.beta.kubernetes.io/aws-load-balancer-scheme: 'internet-facing' # 외부 접근 허용
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: munggae-keyword
+#   ports:
+#     - protocol: TCP
+#       port: 8001 # ALB의 포트
+#       targetPort: 8001 # 컨테이너의 포트
+# ---
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: munggae-envs-config
+#   namespace: munggae
+# data:
+#   MYSQL_HOST: 'mysql-munggae-service'
+#   MYSQL_PORT: '3306'
+#   MYSQL_USER: 'root'
+#   MYSQL_PASSWORD: '123'
+#   MYSQL_DB: 'munggaedatabase'
+#   ES_HOST: http://elasticsearch-service
+#   ES_PORT: '9200'
