@@ -17,10 +17,12 @@ spec:
     spec:
       containers:
         - name: munggae-chatkey
-          image: ella00/munggae-ai-repo:7
+          image: ella00/munggae-ai-repo:6
           ports:
             - containerPort: 8001
           envFrom:
+            - configMapRef:
+                name: munggae-env-config
             - secretRef:
                 name: openai-secret
 ---
@@ -39,3 +41,16 @@ spec:
     - protocol: TCP
       port: 8001 # ALB의 포트
       targetPort: 8001 # 컨테이너의 포트
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: munggae-env-config
+  namespace: munggae
+data:
+  MYSQL_HOST: mysql-munggae-service:3306
+  MYSQL_USER: root
+  MYSQL_PASSWORD: '123'
+  MYSQL_DB: munggaedb
+  ES_HOST: elastic
+  ES_PORT: http://elasticsearch-service:9200
