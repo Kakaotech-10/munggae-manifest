@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keyword-extraction-config
+  namespace: munggae
+data:
+  MYSQL_HOST: "mysql-munggae-service"
+  MYSQL_USER: "root"
+  MYSQL_PASSWORD: "123"
+  MYSQL_DB: "munggaedatabase"
+  ES_HOST: "elasticsearch-service"
+  ES_PORT: "9200"
+  API_URL: "http://munggae-ai-service:8000/api/v2/text/keyword"

@@ -63,6 +63,8 @@ data:
       cloudfront-url: ${CLOUDFRONT_URI}
       fast-api:
         base-url: http://munggae-ai-service:8000/api/v1
+      ai-comment-api:
+        base-url: http://munggae-chatkey-service:8001
 
     cloud:
       aws:
